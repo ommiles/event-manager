@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Header from './Header';
-import EventList from './EventList';
-import PropsRoute from './PropsRoute';
 import Event from './Event';
+import EventList from './EventList';
+import Header from './Header';
+import PropsRoute from './PropsRoute';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Editor extends React.Component {
       <div>
         <Header />
         <EventList events={events} />
-        <PropsRoute path="events/:id" component={Event} event={event} />
+        <PropsRoute path="/events/:id" component={Event} event={event} />
       </div>
     );
   }

@@ -9,7 +9,7 @@ import Editor from './Editor';
 const App = () => (
   <div>
     <Route path="/events/:id?" component={Editor} />
-    <Editor />
+    {/* <Editor /> */}
   </div>
 );
 

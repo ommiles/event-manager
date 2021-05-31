@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // when clicked, the list of events in <EventList> should navigate to /events/:id
 class EventList extends React.Component {
@@ -8,7 +8,9 @@ class EventList extends React.Component {
   // for the render method to display
   renderEvents() {
     const { events } = this.props;
-    events.sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
+    events.sort(
+      (a, b) => new Date(b.event_date) - new Date(a.event_date),
+    );
 
     return events.map((event) => (
       <li key={event.id}>
