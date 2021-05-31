@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+// when clicked, the list of events in <EventList> should navigate to /events/:id
 class EventList extends React.Component {
   // renderEvents method returns a sorted list of events
   // for the render method to display
@@ -10,9 +12,11 @@ class EventList extends React.Component {
 
     return events.map((event) => (
       <li key={event.id}>
-        {event.event_date}
-        {' - '}
-        {event.event_type}
+        <Link to={`/events/${event.id}`}>
+          {event.event_date}
+          {' - '}
+          {event.event_type}
+        </Link>
       </li>
     ));
   }

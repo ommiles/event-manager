@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// when clicked, the list of events in <EventList> should navigate to /events/:id
 const Event = ({ event }) => (
   <div>
     <h2>
