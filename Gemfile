@@ -44,6 +44,7 @@ group :development do
   gem 'spring'
   gem 'rails-erd'
   gem 'faker', '~> 2.9'
+  gem 'responders'
 end
 
 group :test do
