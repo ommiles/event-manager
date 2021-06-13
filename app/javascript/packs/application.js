@@ -20,6 +20,7 @@ import App from '../components/App';
 
 // wrap the app in a <BrowserRouter> component,
 // this uses the HTML5 history API to keep the UI in sync with the URL
+
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <BrowserRouter>
@@ -28,3 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#root'),
   );
 });
+
+// confirm Webpacker is working properly
+const {
+  a, b, c, ...rest
+} = {
+  a: 1, b: 2, c: 3, d: 4, e: 5,
+};
+console.log(rest);
