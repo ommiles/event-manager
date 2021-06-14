@@ -26,23 +26,23 @@ class Editor extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
 
-    addEvent(newEvent) {
-      axios
-        .post('/api/events.json', newEvent)
-        .then((response) => {
-          alert('Event Added!');
-          const savedEvent = response.data;
-          this.setState(prevState => ({
-            events: [...prevState.events, savedEvent],
-          }));
-          const { history } = this.props;
-          history.push(`/events/${savedEvent.id}`);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+  addEvent(newEvent) {
+    axios
+      .post('/api/events.json', newEvent)
+      .then((response) => {
+        alert('Event Added!');
+        const savedEvent = response.data;
+        this.setState((prevState) => ({
+          events: [...prevState.events, savedEvent],
+        }));
+        const { history } = this.props;
+        history.push(`/events/${savedEvent.id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
