@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // when clicked, the list of events in <EventList> should navigate to /events/:id
-const Event = ({ event }) => {
+const Event = ({ onDelete, event }) => {
   console.log('test');
   return (
     <div className="eventContainer">
@@ -10,6 +10,10 @@ const Event = ({ event }) => {
         {event.event_date}
         {' - '}
         {event.event_type}
+        {' '}
+        <button className="delete" type="button" onClick={() => onDelete(event.id)}>
+          Delete
+        </button>
       </h2>
       <ul>
         <li>
@@ -43,6 +47,7 @@ const Event = ({ event }) => {
 
 Event.propTypes = {
   event: PropTypes.shape(),
+  onDelete: PropTypes.func.isRequired,
 };
 
 Event.defaultProps = {
