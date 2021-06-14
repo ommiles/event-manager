@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Event = ({ event }) => {
   console.log('test');
   return (
-    <div>
+    <div className="eventContainer">
       <h2>
         {event.event_date}
         {' - '}
