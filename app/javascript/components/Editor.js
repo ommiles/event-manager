@@ -9,13 +9,10 @@ import PropsRoute from './PropsRoute';
 import EventForm from './EventForm';
 
 class Editor extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      events: null,
-    };
-  }
+  
+  state = {
+    events: null,
+  };
 
   componentDidMount() {
     axios
