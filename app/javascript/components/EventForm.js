@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pikaday from 'pikaday';
+import 'pikaday/css/pikaday.css';
 
 class EventForm extends React.Component {
 
@@ -77,13 +79,14 @@ class EventForm extends React.Component {
           </div>
           <div>
             <label htmlFor="event_date">
-              <strong>Date:</strong>
-              <input
+                <strong>Date:</strong>
+                <input
                 type="text"
                 id="event_date"
                 name="event_date"
-                onChange={this.handleInputChange}
-              />
+                ref={this.dateInput}
+                autoComplete="off"
+                />
             </label>
           </div>
           <div>
