@@ -18,8 +18,8 @@ class EventForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { event } = this.state;
-    const errors = this.validateEvent(event);
-    if (!this.isEmptyObject(errors)) {
+    const errors = validateEvent(event);
+    if (!isEmptyObject(errors)) {
       this.setState({ errors });
     } else {
       console.log(event);
@@ -39,41 +39,10 @@ class EventForm extends React.Component {
     }));
   }
 
-  isEmptyObject = (obj) => {
-    return Object.keys(obj).length === 0;
-  }
-
-  validateEvent = (event) => {
-    const errors = {};
-
-    if (event.event_type === '') {
-      errors.event_type = 'You must enter an event type';
-    }
-
-    if (event.event_date === '') {
-      errors.event_date = 'You must enter a valid date';
-    }
-
-    if (event.title === '') {
-      errors.title = 'You must enter a title';
-    }
-
-    if (event.speaker === '') {
-      errors.speaker = 'You must enter at least one speaker';
-    }
-
-    if (event.host === '') {
-      errors.host = 'You must enter at least one host';
-    }
-
-    console.log(event);
-    return errors;
-  }
-
   renderErrors = () => {
     const { errors } = this.state;
 
-    if (this.isEmptyObject(errors)) {
+    if (isEmptyObject(errors)) {
       return null;
     }
 
