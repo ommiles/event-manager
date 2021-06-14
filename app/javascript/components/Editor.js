@@ -82,7 +82,7 @@ class Editor extends React.Component {
           <EventList events={events} activeId={Number(eventId)} />
           <Switch>
             <PropsRoute path="/events/new" component={EventForm} onSubmit={this.addEvent} />
-            <PropsRoute path="/events/:id" component={Event} event={event} />
+            <PropsRoute path="/events/:id" component={Event} event={event} onDelete={this.deleteEvent} />
           </Switch>
         </div>
       </div>
