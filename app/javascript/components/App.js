@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Editor from './Editor';
+import './App.css';
 
 // we have made the :id part of the route optional (due to the question mark)
 // we are pointing our root route at /events
