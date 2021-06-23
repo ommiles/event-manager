@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import EventNotFound from './EventNotFound';
 
 // when clicked, the list of events in <EventList> should navigate to /events/:id
 const Event = ({ onDelete, event }) => {
+  if (!event) return <EventNotFound />;
   console.log('test');
   return (
     <div className="eventContainer">
