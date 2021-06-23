@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // when clicked, the list of events in <EventList> should navigate to /events/:id
 const Event = ({ onDelete, event }) => {
@@ -11,6 +12,7 @@ const Event = ({ onDelete, event }) => {
         {' - '}
         {event.event_type}
         {' '}
+        <Link to={`/events/${event.id}/edit`}>Edit</Link>
         <button className="delete" type="button" onClick={() => onDelete(event.id)}>
           Delete
         </button>
