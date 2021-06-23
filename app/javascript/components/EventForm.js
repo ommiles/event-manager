@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Pikaday from 'pikaday';
 import 'pikaday/css/pikaday.css';
 import { formatDate, isEmptyObject, validateEvent } from '../helpers/helpers';
+import { Link } from 'react-router-dom';
 
 class EventForm extends React.Component {
 
@@ -22,12 +23,17 @@ class EventForm extends React.Component {
   componentDidMount() {
     new Pikaday({
       field: this.dateInput.current,
+      toString: date => formatDate(date),
       onSelect: (date) => {
         const formattedDate = formatDate(date);
         this.dateInput.current.value = formattedDate;
         this.updateEvent('event_date', formattedDate);
       },
     });
+  }
+
+  componentWillReceiveProps({ event }) {
+    this.setState({ event });
   }
 
   handleSubmit = (e) => {
@@ -87,10 +93,14 @@ class EventForm extends React.Component {
     }));
   }
 
-  render(){
+  render() {
+    const { event } = this.state;
+    const cancelURL = event.id ? `/events/${event.id}` : '/events';
+    const title = event.id ? `${event.event_date} - ${event.event_type}` : 'New Event';
+  
     return (
       <div>
-        <h2>New Event</h2>
+        <h2>{title}</h2>
         {this.renderErrors()}
         <form className="eventForm" onSubmit={this.handleSubmit}>
           <div>
@@ -101,19 +111,22 @@ class EventForm extends React.Component {
                 id="event_type"
                 name="event_type"
                 onChange={this.handleInputChange}
+                value={event.event_type}
               />
             </label>
           </div>
           <div>
             <label htmlFor="event_date">
-                <strong>Date:</strong>
-                <input
+              <strong>Date:</strong>
+              <input
                 type="text"
                 id="event_date"
                 name="event_date"
                 ref={this.dateInput}
                 autoComplete="off"
-                />
+                value={event.event_date}
+                onChange={this.handleInputChange}
+              />
             </label>
           </div>
           <div>
@@ -125,6 +138,7 @@ class EventForm extends React.Component {
                 id="title"
                 name="title"
                 onChange={this.handleInputChange}
+                value={event.title}
               />
             </label>
           </div>
@@ -136,6 +150,7 @@ class EventForm extends React.Component {
                 id="speaker"
                 name="speaker"
                 onChange={this.handleInputChange}
+                value={event.speaker}
               />
             </label>
           </div>
@@ -147,6 +162,7 @@ class EventForm extends React.Component {
                 id="host"
                 name="host"
                 onChange={this.handleInputChange}
+                value={event.host}
               />
             </label>
           </div>
@@ -158,15 +174,17 @@ class EventForm extends React.Component {
                 id="published"
                 name="published"
                 onChange={this.handleInputChange}
+                checked={event.published}
               />
             </label>
           </div>
           <div className="form-actions">
             <button type="submit">Save</button>
+            <Link to={cancelURL}>Cancel</Link>
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
