@@ -12,7 +12,6 @@ const App = () => (
   <div>
     <Route path="/events/:id?" component={Editor} />
     <Alert stack={{ limit: 3 }} />
-    {/* <Editor /> */}
   </div>
 );
 

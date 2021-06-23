@@ -4,13 +4,40 @@ import PropTypes from 'prop-types';
 
 // when clicked, the list of events in <EventList> should navigate to /events/:id
 class EventList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: '',
+    };
+
+    this.searchInput = React.createRef();
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+  }
+
+  updateSearchTerm() {
+    this.setState({ searchTerm: this.searchInput.current.value });
+  }
+
+  matchSearchTerm(obj) {
+    const {
+      id, published, created_at, updated_at, ...rest
+    } = obj;
+    const { searchTerm } = this.state;
+
+    return Object.values(rest).some(
+      value => value.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
+    );
+  }
+
   // renderEvents method returns a sorted list of events
   // for the render method to display
   renderEvents() {
     const { activeId, events } = this.props;
-    events.sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
+    const filteredEvents = events
+      .filter((el) => this.matchSearchTerm(el))
+      .sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
 
-    return events.map((event) => (
+    return filteredEvents.map((event) => (
       <li key={event.id}>
         <Link
           to={`/events/${event.id}`}
@@ -27,8 +54,17 @@ class EventList extends React.Component {
   render() {
     return (
       <section className="eventList">
-        <h2>Events</h2>
-        <Link to="/events/new">New Event</Link>
+        <h2>
+          Events
+          <Link to="/events/new">New Event</Link>
+        </h2>
+        <input
+          className="search"
+          placeholder="Search"
+          type="text"
+          ref={this.searchInput}
+          onKeyUp={this.updateSearchTerm}
+        />
         <ul>{this.renderEvents()}</ul>
       </section>
     );
