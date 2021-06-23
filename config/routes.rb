@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # root to: redirect('/events')
+  root to: redirect('/events')
 
   # site controller is the root of our new project
-  root 'site#index'
+  # root 'site#index'
 
   # organize react router routes
   # we are informing Rails about the routes we will be using in our React application
